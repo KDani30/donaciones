@@ -6,6 +6,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Métodos de Pago - Donaciones Médicas</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Estilos para el selector de países */
+        .country-selector {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+            padding: 40px 0;
+            color: white;
+            text-align: center;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7);
+            margin-bottom: 30px;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            background-attachment: fixed;
+        }
+        
+        .country-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .country-btn {
+            padding: 12px 25px;
+            background-color: #fff;
+            color: #e74c3c;
+            border: 2px solid #fff;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .country-btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .country-btn.active {
+            background-color: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
+        }
+        
+        .payment-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .payment-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .method-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .country-selector h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+        }
+        
+        .country-selector p {
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+        }
+    </style>
 </head>
 
 <body>
@@ -32,70 +111,106 @@
         </div>
     </section>
 
+    <!-- Selector de países -->
+    <section class="country-selector">
+        <div class="container">
+            <h3>Selecciona tu país</h3>
+            <p>Encuentra los métodos de pago disponibles en tu ubicación</p>
+            <div class="country-buttons">
+                <button class="country-btn active" data-country="venezuela">Venezuela</button>
+                <button class="country-btn" data-country="panama">Panamá</button>
+                <button class="country-btn" data-country="eeuu">Estados Unidos</button>
+                <button class="country-btn" data-country="internacional">Internacional</button>
+            </div>
+        </div>
+    </section>
+
     <section class="payment-methods">
         <div class="container">
-            <!-- Cuentas de Venezuela -->
-            <div class="method">
-                <h2>Cuentas en Venezuela</h2>
-                <div class="method-icon">🏦</div>
-                <h3>Transferencia Bancaria</h3>
-                <div class="bank-details">
-                    <p><strong>Titular:</strong> Keiber Daniel Rodríguez Ramírez</p>
-                    <p><strong>Banco:</strong> Banco de Venezuela</p>
-                    <p><strong>Cuenta:</strong> 01020122570000304829</p>
-                    <p><strong>CI:</strong> V29555077</p>
-                </div>
+            <!-- Venezuela -->
+            <div id="venezuela" class="payment-section active">
+                <div class="method-card">
+                    <h2>Cuentas en Venezuela</h2>
+                    
+                    <div class="method">
+                        <div class="method-icon">🏦</div>
+                        <h3>Transferencia Bancaria</h3>
+                        <div class="bank-details">
+                            <p><strong>Titular:</strong> Keiber Daniel Rodríguez Ramírez</p>
+                            <p><strong>Banco:</strong> Banco de Venezuela</p>
+                            <p><strong>Cuenta:</strong> 01020122570000304829</p>
+                            <p><strong>CI:</strong> V29555077</p>
+                        </div>
+                    </div>
 
-                <div class="method-icon">📱</div>
-                <h3>Pago Móvil</h3>
-                <div class="bank-details">
-                    <p><strong>Titular:</strong> Keiber Daniel Rodríguez Ramírez</p>
-                    <p><strong>Número de telefono:</strong> 0412-600-3421</p>
-                    <p><strong>Banco:</strong> Banco de Venezuela (0102)</p>
-                    <p><strong>CI:</strong> V29555077</p>
-                    <p class="note">Escanea el código QR para donar directamente</p>
-                    <img src="images/qr_keiber.jpg" alt="Código QR para Pago Móvil" class="imagen-adaptable">
+                    <div class="method">
+                        <div class="method-icon">📱</div>
+                        <h3>Pago Móvil</h3>
+                        <div class="bank-details">
+                            <p><strong>Titular:</strong> Keiber Daniel Rodríguez Ramírez</p>
+                            <p><strong>Número de telefono:</strong> 0412-600-3421</p>
+                            <p><strong>Banco:</strong> Banco de Venezuela (0102)</p>
+                            <p><strong>CI:</strong> V29555077</p>
+                            <p class="note">Escanea el código QR para donar directamente</p>
+                            <img src="images/qr_keiber.jpg" alt="Código QR para Pago Móvil" class="imagen-adaptable">
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Cuentas Internacionales -->
-            <div class="method">
-                <h1>Cuentas Internacionales</h1>
-                <br>
-                <div class="method-icon">📱</div>
-
-                <!-- binace keiber -->
-                <h3>Binance Pay</h3>
-                <div class="bank-details">
-                    <p><strong>Titular:</strong> Keiber Daniel Rodríguez Ramírez</p>
-                    <p><strong>ID:</strong> 204197276</p>
-                    <p><strong>Correo: </strong><a href="mailto:keiberr30@gmail.com">keiberr30@gmail.com</a></p>
-                    <p class="note">Escanea el código QR para donar directamente</p>
-                    <img src="images/binance.jpg" alt="Código QR para Binance Pay" class="imagen-adaptable">
-                </div>
-                <br>
-                <h2>Cuentas en Panama</h2>
-                <div class="method-icon">📱</div>
-                <!-- joneider Yappy -->
-                <h3>Yappy</h3>
-                <div class="bank-details">
-                    <p><strong>Titular:</strong> Jose Joneider Zambrano Ramirez</p>
-                    <p><strong>Banco:</strong> Banco General</p>
-                    <p><strong>Cuenta de ahorros:</strong> 0403962500332</p>
-                    <p><strong>Yappy:</strong> 62806272</p>
-                </div>
-                <br>
-                <h2>Cuentas en EEUU</h2>
-                <br>
-                <div class="method-icon">📱</div>
-
-                <!-- zelle ali -->
-                <h3>Zelle</h3>
-                <div class="bank-details">
-                    <p><strong>Titular:</strong> Betzalih Sira</p>
-                    <p><strong>Número de telefono: </strong><a href="https://wa.me/13463798801">+1 346 379 8801</a></p>
+            <!-- Panamá -->
+            <div id="panama" class="payment-section">
+                <div class="method-card">
+                    <h2>Cuentas en Panamá</h2>
+                    
+                    <div class="method">
+                        <div class="method-icon">📱</div>
+                        <h3>Yappy</h3>
+                        <div class="bank-details">
+                            <p><strong>Titular:</strong> Jose Joneider Zambrano Ramirez</p>
+                            <p><strong>Banco:</strong> Banco General</p>
+                            <p><strong>Cuenta de ahorros:</strong> 0403962500332</p>
+                            <p><strong>Yappy:</strong> 62806272</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Estados Unidos -->
+            <div id="eeuu" class="payment-section">
+                <div class="method-card">
+                    <h2>Cuentas en Estados Unidos</h2>
+                    
+                    <div class="method">
+                        <div class="method-icon">📱</div>
+                        <h3>Zelle</h3>
+                        <div class="bank-details">
+                            <p><strong>Titular:</strong> Betzalih Sira</p>
+                            <p><strong>Número de telefono: </strong><a href="https://wa.me/13463798801">+1 346 379 8801</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internacional -->
+            <div id="internacional" class="payment-section">
+                <div class="method-card">
+                    <h2>Métodos Internacionales</h2>
+                    
+                    <div class="method">
+                        <div class="method-icon">📱</div>
+                        <h3>Binance Pay</h3>
+                        <div class="bank-details">
+                            <p><strong>Titular:</strong> Keiber Daniel Rodríguez Ramírez</p>
+                            <p><strong>ID:</strong> 204197276</p>
+                            <p><strong>Correo: </strong><a href="mailto:keiberr30@gmail.com">keiberr30@gmail.com</a></p>
+                            <p class="note">Escanea el código QR para donar directamente</p>
+                            <img src="images/binance.jpg" alt="Código QR para Binance Pay" class="imagen-adaptable">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="donation-note">
@@ -115,7 +230,27 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script>
+        // Funcionalidad para el selector de países
+        document.addEventListener('DOMContentLoaded', function() {
+            const countryButtons = document.querySelectorAll('.country-btn');
+            const paymentSections = document.querySelectorAll('.payment-section');
+            
+            countryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const country = this.getAttribute('data-country');
+                    
+                    // Desactivar todos los botones y secciones
+                    countryButtons.forEach(btn => btn.classList.remove('active'));
+                    paymentSections.forEach(section => section.classList.remove('active'));
+                    
+                    // Activar el botón y sección seleccionados
+                    this.classList.add('active');
+                    document.getElementById(country).classList.add('active');
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
